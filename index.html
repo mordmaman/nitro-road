@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Nitro Road</title>
+<meta name="description" content="Arcade racing: race the computer, beat your ghost, or dodge the traffic.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0d0b26">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preload" href="fonts/russo-one.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<div id="loading" class="overlay"><div class="logo">NITRO<span>ROAD</span></div></div>
+
+<!-- top buttons -->
+<div id="hudBtns" class="menu">
+  <button id="pauseBtn" class="round" aria-label="Pause">⏸</button>
+  <button id="muteBtn" class="round" aria-label="Sound on or off">🔊</button>
+</div>
+
+<!-- touch controls -->
+<div id="touch" class="hidden">
+  <div id="steerPad"><span class="arrow left">◀</span><span class="arrow right">▶</span></div>
+  <div id="pedals">
+    <button id="tNitro" class="pedal nitro"><span>NITRO</span></button>
+    <div class="pedal-row">
+      <button id="tBrake" class="pedal brake"><span>BRAKE</span></button>
+      <button id="tGas" class="pedal gas"><span>GAS</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- main menu -->
+<div id="menu" class="overlay hidden">
+  <div class="card wide">
+    <div class="top-row">
+      <div class="logo">NITRO<span>ROAD</span></div>
+      <div class="top-actions">
+        <span class="stars-total">★ <b id="starTotal">0</b><small>/108</small></span>
+        <button id="garageBtn" class="pill">🚗 Garage</button>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col">
+        <div class="lbl">Mode</div>
+        <div id="modeList">
+          <button class="mode" data-mode="race"><i>🏁</i><span><b>Race</b><small class="mstars"></small></span></button>
+          <button class="mode" data-mode="trial"><i>⏱️</i><span><b>Time Trial</b><small class="mstars"></small></span></button>
+          <button class="mode" data-mode="dodge"><i>🚧</i><span><b>Dodge Run</b><small class="mstars"></small></span></button>
+        </div>
+        <div id="modeBlurb" class="blurb"></div>
+      </div>
+      <div class="col">
+        <div class="lbl">Track</div>
+        <div id="trackList" class="tracks"></div>
+        <div class="row-go">
+          <div id="diffSeg" class="seg">
+            <button data-diff="easy">Easy</button>
+            <button data-diff="medium">Medium</button>
+            <button data-diff="hard">Hard</button>
+          </div>
+          <button id="goBtn" class="go">GO!</button>
+        </div>
+      </div>
+    </div>
+    <div class="foot">
+      <label class="toggle"><input type="checkbox" id="autoGas"><span></span> Auto-accelerate</label>
+      <span class="keys">← → steer · ↑ gas · ↓ brake · Space nitro · P pause</span>
+      <span class="rotate">Turn your phone sideways for the best view ↻</span>
+    </div>
+  </div>
+</div>
+
+<!-- garage -->
+<div id="garage" class="overlay hidden">
+  <div class="card">
+    <h2>Garage</h2>
+    <canvas id="garageCar"></canvas>
+    <div class="lbl">Paint</div>
+    <div id="paintGrid" class="paints"></div>
+    <div class="lbl">Car</div>
+    <div id="bodyGrid" class="bodies"></div>
+    <div id="garageNote" class="note"></div>
+    <button id="garageDone" class="go small">Done</button>
+  </div>
+</div>
+
+<!-- results -->
+<div id="results" class="overlay hidden">
+  <div class="card res">
+    <div class="res-a">
+      <h2 id="resTitle"></h2>
+      <div id="resStars" class="rstars"></div>
+      <div id="resBig" class="big"></div>
+      <div id="resSub" class="sub"></div>
+      <div id="resNext" class="next"></div>
+      <div id="resUnlock" class="unlock hidden"></div>
+    </div>
+    <div id="resLines" class="lines res-b"></div>
+    <div class="btns res-c">
+      <button id="againBtn" class="go">Again ↻</button>
+      <button id="nextTrackBtn" class="go alt">Next track →</button>
+      <button id="resMenuBtn" class="go alt">Menu</button>
+    </div>
+  </div>
+</div>
+
+<!-- pause -->
+<div id="pause" class="overlay hidden">
+  <div class="card narrow">
+    <h2>Paused</h2>
+    <div class="btns col">
+      <button id="resumeBtn" class="go">Keep going</button>
+      <button id="restartBtn" class="go alt">Restart</button>
+      <button id="quitBtn" class="go alt">Menu</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/util.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/art.js"></script>
+<script src="js/tracks.js"></script>
+<script src="js/render.js"></script>
+<script src="js/game.js"></script>
+<script src="js/ui.js"></script>
+</body>
+</html>
