@@ -25,10 +25,10 @@ Every track × mode × difficulty has 3 stars to win (108 in total). Stars unloc
 
 | | Keyboard | Touch |
 |---|---|---|
-| Steer | ← → or A D | ◀ ▶ pad (bottom left) |
-| Gas | ↑ or W | GAS button (or switch on **Auto-accelerate**) |
-| Brake | ↓ or S | BRAKE |
-| Nitro | Space, Shift or N | NITRO |
+| Steer | ← → or A D | ◀ bottom left, ▶ bottom right |
+| Gas | ↑ or W | GAS, above ▶ (or switch on **Auto-accelerate**) |
+| Brake | ↓ or S | BRAKE, above ▶ |
+| Nitro | Space, Shift or N | NITRO, above ◀ |
 | Pause | P or Esc | ⏸ |
 | Sound | M | 🔊 |
 

@@ -983,6 +983,9 @@ function drawHud() {
   const pad = u * 2;
   const pw = u * 26;
 
+  // the mini-map goes under the panel, or beside it when the touch buttons need the space below
+  const mapSpot = (y) => (UI.touchVisible() && pad + u * 48 < w / 2 - 60 * R.dpr ? [pad + u * 31, pad, u * 16] : [pad, y, u * 16]);
+
   // left panel
   if (G.mode === 'race') {
     const pw2 = u * 30;
@@ -996,7 +999,7 @@ function drawHud() {
     R.text('LAP', pad + pw2 - u * 2, pad + u * 3.2, u * 2.2, '#c8cbe0', 'right');
     R.text(`${U.clamp(P.lap + 1, 1, laps())}/${laps()}`, pad + pw2 - u * 2, pad + u * 6.8, u * 4.2, '#ffffff', 'right');
     R.text(U.fmtTime(G.raceT), pad + pw2 - u * 2, pad + u * 10.5, u * 2.6, '#ffffff', 'right');
-    drawMinimap(pad, pad + u * 14.5, u * 16);
+    drawMinimap(...mapSpot(pad + u * 14.5));
   } else if (G.mode === 'trial') {
     const pw2 = u * 30;
     R.panel(pad, pad, pw2, u * 19.5);
@@ -1015,7 +1018,7 @@ function drawHud() {
       c.fillStyle = medalCols[mi]; c.beginPath(); c.arc(pad + u * 3.2, pad + u * 13.2, u * 1.1, 0, Math.PI * 2); c.fill();
       R.text(`${medalNames[mi]}  ${U.fmtTime(par[mi])}`, pad + u * 5, pad + u * 13.2, u * 2.4, medalCols[mi], 'left');
     } else R.text('no medal this time', pad + u * 2, pad + u * 13.2, u * 2.4, '#ff9a9a', 'left');
-    drawMinimap(pad, pad + u * 21, u * 16);
+    drawMinimap(...mapSpot(pad + u * 21));
   } else {
     R.panel(pad, pad, pw, u * 16.5);
     R.text(Math.floor(G.score).toLocaleString(), pad + u * 2, pad + u * 5.4, u * 6, '#ffd23f', 'left');

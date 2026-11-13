@@ -231,24 +231,11 @@ const UI = (() => {
   }
 
   function bindTouch() {
-    const pad = $('steerPad');
-    const ptrs = new Map();
-    const updateSteer = () => {
-      let l = false, r = false;
-      const rect = pad.getBoundingClientRect();
-      for (const x of ptrs.values()) { if (x < rect.left + rect.width / 2) l = true; else r = true; }
-      Input.touch.left = l; Input.touch.right = r;
-      pad.classList.toggle('l', l); pad.classList.toggle('r', r);
-    };
-    pad.addEventListener('pointerdown', (e) => { e.preventDefault(); pad.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, e.clientX); updateSteer(); });
-    pad.addEventListener('pointermove', (e) => { if (ptrs.has(e.pointerId)) { ptrs.set(e.pointerId, e.clientX); updateSteer(); } });
-    const end = (e) => { ptrs.delete(e.pointerId); updateSteer(); };
-    pad.addEventListener('pointerup', end); pad.addEventListener('pointercancel', end); pad.addEventListener('lostpointercapture', end);
-
-    [['tGas', 'gas'], ['tBrake', 'brake'], ['tNitro', 'nitro']].forEach(([id, key]) => {
+    [['tLeft', 'left'], ['tRight', 'right'], ['tGas', 'gas'], ['tBrake', 'brake'], ['tNitro', 'nitro']].forEach(([id, key]) => {
       const el = $(id);
       const down = (e) => {
-        e.preventDefault(); el.setPointerCapture(e.pointerId);
+        e.preventDefault();
+        try { el.setPointerCapture(e.pointerId); } catch (err) { /* fine without capture */ }
         Input.touch[key] = true; el.classList.add('down');
         if (key === 'gas' || key === 'nitro') Input.gasEdge = G.t;
       };
@@ -348,7 +335,9 @@ const UI = (() => {
     } catch (e) { /* ignore */ }
   }
 
-  return { init, showResults, showPause, hidePause, setNitroFill, showMenu };
+  const touchVisible = () => !$('touch').classList.contains('hidden');
+
+  return { init, showResults, showPause, hidePause, setNitroFill, showMenu, touchVisible };
 })();
 
 UI.init();

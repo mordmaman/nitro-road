@@ -1,7 +1,7 @@
 // Lets the game install as an app and work offline.
 // Network first, so new versions show up straight away when online;
 // falls back to the saved copy when there's no internet.
-const CACHE = 'nitro-road-v1';
+const CACHE = 'nitro-road-v2';
 const ASSETS = [
   './', './index.html', './manifest.json', './css/style.css',
   './js/config.js', './js/util.js', './js/audio.js', './js/art.js', './js/tracks.js', './js/render.js', './js/game.js', './js/ui.js',

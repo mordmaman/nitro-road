@@ -28,13 +28,16 @@
 
 <!-- touch controls -->
 <div id="touch" class="hidden">
-  <div id="steerPad"><span class="arrow left">◀</span><span class="arrow right">▶</span></div>
-  <div id="pedals">
-    <button id="tNitro" class="pedal nitro"><span>NITRO</span></button>
+  <div class="tside tleft">
+    <button id="tNitro" class="pedal nitro" aria-label="Nitro"><span>NITRO</span></button>
+    <button id="tLeft" class="steer" aria-label="Steer left">◀</button>
+  </div>
+  <div class="tside tright">
     <div class="pedal-row">
-      <button id="tBrake" class="pedal brake"><span>BRAKE</span></button>
-      <button id="tGas" class="pedal gas"><span>GAS</span></button>
+      <button id="tGas" class="pedal gas" aria-label="Gas"><span>GAS</span></button>
+      <button id="tBrake" class="pedal brake" aria-label="Brake"><span>BRAKE</span></button>
     </div>
+    <button id="tRight" class="steer" aria-label="Steer right">▶</button>
   </div>
 </div>
 
